@@ -9,7 +9,10 @@ export type RedisMulti = ReturnType<Redis['multi']>;
 @Injectable()
 export class RedisService {
   constructor(private readonly config: ConfigService) {
-    this.#url = "redis://:73bcac83435d631803cd647f80cac456baca72de61c0f05ae749d19aac8e6796@2a16a.openredis.io:11625";
+    this.#url =
+      this.config.get<string>('REDIS_URL') ||
+      this.config.get<string>('REDISCLOUD_URL') ||
+      'redis://:73bcac83435d631803cd647f80cac456baca72de61c0f05ae749d19aac8e6796@2a16a.openredis.io:11625';
 
     this.#client = this.#attachLogger(
       createClient({
