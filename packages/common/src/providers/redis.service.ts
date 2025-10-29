@@ -37,10 +37,7 @@ export class RedisService {
    * Returns an IORedis client.
    */
   getIORedis(): IoRedis {
-    return new IoRedis(this.#url, {
-      maxRetriesPerRequest: null,
-      enableReadyCheck: false,
-    });
+    return new IoRedis("redis://:qvsk6zm1y2y0j28z2mqtqe31ht24m3c8wdhy1ke24m5mn7f7jjhq@canny-fox-5cac3d4bc3.redisgreen.net:11042");
   }
 
   #attachLogger(client: Redis): Redis {
