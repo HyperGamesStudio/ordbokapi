@@ -40,6 +40,7 @@ export class RedisService {
     return new IoRedis(this.#url, {
       maxRetriesPerRequest: null,
       enableReadyCheck: false,
+      tls: {},
     });
   }
 
