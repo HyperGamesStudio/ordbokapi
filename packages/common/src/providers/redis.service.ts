@@ -12,7 +12,7 @@ export class RedisService {
     this.#url =
       this.config.get<string>('REDIS_URL') ||
       this.config.get<string>('REDISCLOUD_URL') ||
-      'redis://localhost:6379';
+      'rediss://:pb4efb9d31a15b54705786bf8110b2e7c8fe9c1d7c9c71f81c15a771479bf07c6@ec2-3-82-140-25.compute-1.amazonaws.com:25550';
 
     this.#client = this.#attachLogger(
       createClient({
@@ -37,7 +37,8 @@ export class RedisService {
    * Returns an IORedis client.
    */
   getIORedis(): IoRedis {
-    return new IoRedis(this.#url, {
+    this.#logger.log('Will try to connect to Redis rediss://:pb4efb9d31a15b54705786bf8110b2e7c8fe9c1d7c9c71f81c15a771479bf07c6@ec2-3-82-140-25.compute-1.amazonaws.com:25550');
+    return new IoRedis("rediss://:pb4efb9d31a15b54705786bf8110b2e7c8fe9c1d7c9c71f81c15a771479bf07c6@ec2-3-82-140-25.compute-1.amazonaws.com:25550", {
       maxRetriesPerRequest: null,
       enableReadyCheck: false,
       tls: {
