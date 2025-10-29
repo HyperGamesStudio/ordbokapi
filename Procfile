@@ -1,1 +1,1 @@
-web: yarn workspace ordbokapi run start:dev
+web: yarn workspace ordbokapi run start:prod
