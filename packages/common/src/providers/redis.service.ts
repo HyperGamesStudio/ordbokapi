@@ -12,11 +12,15 @@ export class RedisService {
     this.#url =
       this.config.get<string>('REDIS_URL') ||
       this.config.get<string>('REDISCLOUD_URL') ||
-      'redis://:qvsk6zm1y2y0j28z2mqtqe31ht24m3c8wdhy1ke24m5mn7f7jjhq@canny-fox-5cac3d4bc3.redisgreen.net:11042';
+      'redis://localhost:6379';
 
     this.#client = this.#attachLogger(
       createClient({
         url: this.#url,
+        socket: {
+          tls: true,
+          rejectUnauthorized: false,
+        }
       }),
     );
   }
@@ -37,7 +41,9 @@ export class RedisService {
    * Returns an IORedis client.
    */
   getIORedis(): IoRedis {
-    return new IoRedis("rediss://:p0d4c0299d6fba1ca605e13aec218d058e581d88eba90c4dcf920af1f6a89f094@ec2-52-44-201-59.compute-1.amazonaws.com:32110", {
+    return new IoRedis(this.#url, {
+      maxRetriesPerRequest: null,
+      enableReadyCheck: false,
       tls: {
         rejectUnauthorized: false
       }
