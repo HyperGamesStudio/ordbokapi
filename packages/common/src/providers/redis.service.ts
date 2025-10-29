@@ -12,7 +12,7 @@ export class RedisService {
     this.#url =
       this.config.get<string>('REDIS_URL') ||
       this.config.get<string>('REDISCLOUD_URL') ||
-      'redis://:73bcac83435d631803cd647f80cac456baca72de61c0f05ae749d19aac8e6796@2a16a.openredis.io:11625';
+      'redis://:qvsk6zm1y2y0j28z2mqtqe31ht24m3c8wdhy1ke24m5mn7f7jjhq@canny-fox-5cac3d4bc3.redisgreen.net:11042';
 
     this.#client = this.#attachLogger(
       createClient({

@@ -13,8 +13,8 @@ const randBetween = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
 const vars = {
-  redis_port: 11625,
-  redis_insight_port: 11625,
+  redis_port: 11042,
+  redis_insight_port: 11042,
 };
 
 const templateEnv = await fs.readFile(templateEnvPath, 'utf-8');
