@@ -17,10 +17,6 @@ export class RedisService {
     this.#client = this.#attachLogger(
       createClient({
         url: this.#url,
-        socket: {
-          tls: true,
-          rejectUnauthorized: false,
-        }
       }),
     );
   }
