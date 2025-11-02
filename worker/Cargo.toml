@@ -1,0 +1,38 @@
+[package]
+name = "ordbokapi-worker"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.51", features = ["derive", "wrap_help"] }
+futures = "0.3.31"
+indicatif = "0.18.2"
+num_cpus = "1.17.0"
+redis = { version = "0.32.7", features = ["tokio-comp", "aio", "connection-manager", "tokio-native-tls-comp", "json"] }
+reqwest = { version = "0.12.24", features = ["json"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
+tokio = { version = "1.48.0", features = ["fs", "rt-multi-thread", "macros"] }
+tokio-macros = "2.6.0"
+tokio-native-tls = "0.3.1"
+tokio-cron-scheduler = "0.15.1"
+log = "0.4.25"
+env_logger = "0.11.6"
+dotenv = { version = "0.15.0", optional = true }
+matrix-sdk = { version = "0.12.0", optional = true, default-features = false, features = ["native-tls", "markdown"] }
+pulldown-cmark = { version = "0.13.0", optional = true }
+sentry = { version = "0.39.0", optional = true, features = ["anyhow"] }
+
+[features]
+default = []
+use_dotenv = ["dotenv"]
+matrix_notifs = ["matrix-sdk", "pulldown-cmark"]
+sentry_integration = ["sentry"]
+
+[profile.dev]
+debug = true
+
+[dev-dependencies]
+assert_cmd = "2.0"
+predicates = "3.1.3"
